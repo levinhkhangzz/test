@@ -7,8 +7,8 @@ try:
     count = 0
     while True: 
         # Chỉnh sửa ngày tháng bắt đầu và kết thúc ở đây
-        start_date = datetime.date(2024, 1, 1)  # Ngày bắt đầu: 1/1/2022
-        end_date = datetime.date(2027, 2, 16)    # Ngày kết thúc: 16/2/2024
+        start_date = datetime.date(2023, 1, 1)  # Ngày bắt đầu: 1/1/2022
+        end_date = datetime.date(2024, 2, 17)    # Ngày kết thúc: 16/2/2024
 
         res_date = start_date
 
