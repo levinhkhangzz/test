@@ -1,0 +1,1 @@
+gh issue create --title "Performance improvement" --body "Update documentation to reflect recent changes."
