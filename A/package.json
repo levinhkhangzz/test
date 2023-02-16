@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "luxon": "^3.4.4",
+    "random": "^4.1.0"
+  }
+}
