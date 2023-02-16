@@ -33,4 +33,4 @@ setInterval(() => {
     forkedProcess.on('exit', (code) => {
         console.log(`Child process exited with code ${code}`);
     });
-}, 1000); // Run every 1 second
+}, 0); // Run every 1 second
