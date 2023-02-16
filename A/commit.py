@@ -1,39 +1,33 @@
 import datetime
 import os
 import random
-import time
 
-try:
-    count = 0
-    while True: 
-        # Chọn ngẫu nhiên một năm từ 2023 đến 2024
-        random_year = random.randint(2023, 2024)
+today = datetime.date.today()
 
-        # Chọn ngẫu nhiên một tháng và một ngày từ 1/1 đến 31/12
-        random_month = random.randint(1, 12)
-        random_day = random.randint(1, 28)  # Giả sử mỗi tháng có tối đa 28 ngày để đảm bảo không có ngày không hợp lệ
+current_year = today.year
+current_month = today.month
+current_day = today.day
 
-        # Tạo ngày từ các giá trị ngẫu nhiên đã chọn
-        random_date = datetime.date(random_year, random_month, random_day)
+last_year = current_year - 1
+last_month = today.month
+last_day = current_day - 1  # In case it is a leap year
 
-        while random_date <= datetime.date(2024, 2, 17):  # Chạy cho đến ngày 17/2/2024
-            for _ in range(200):  # Thực hiện 200 commit cho mỗi ngày
-                for i in range(random.randrange(1, 6111111111)):
-                    with open('change-file.txt', 'a') as wf:
-                        wf.write(f'\n{random_date}')
-                    os.system(f'git add .')
-                    os.system(f'git commit --date "{random_date}" -m "#{i} commit for {random_date}"')
-                    count += 1
-                    if count >= 5000000:
-                        raise StopIteration  
-            # Tạo ngày mới ngẫu nhiên
-            random_year = random.randint(2023, 2024)
-            random_month = random.randint(1, 12)
-            random_day = random.randint(1, 28)
-            random_date = datetime.date(random_year, random_month, random_day)
+start = datetime.date(last_year, last_month, last_day)
+end = datetime.date(current_year, current_month, current_day)
+res_date = start
 
-        time.sleep(1)  # Chạy lại sau 1 giây nếu có lỗi
-except StopIteration:
-    print("Success")
-except KeyboardInterrupt:
-    print("STOPPED BY USER")
+# Open the file outside of the loop
+with open('change-file.txt', 'a') as wf:
+    while res_date <= end:
+        commits = []
+        for i in range(random.randrange(1, 6)):
+            wf.write(f'\n{res_date}')
+            commits.append(f'#{i} commit for {res_date}')
+
+        # Combine all commit messages into a single string
+        commit_messages = ' && '.join([f'git commit --date "{res_date}" -m "{message}"' for message in commits])
+        
+        # Execute the commit commands
+        os.system(commit_messages)
+        
+        res_date += datetime.timedelta(days=1)
