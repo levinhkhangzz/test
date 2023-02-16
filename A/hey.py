@@ -1,43 +1,23 @@
 import os
-import random
 import threading
-import time
+import uuid
 
-# Hàm thực thi để tạo issue
-def create_issue():
+def create_empty_directory(directory_name):
+    try:
+        os.mkdir(directory_name)
+    except FileExistsError:
+        pass
+
+def create_directories():
     while True:
-        # Chọn một tiêu đề và nội dung ngẫu nhiên cho issue
-        random_title = random.choice(issue_titles)
-        random_body = random.choice(issue_bodies)
+        threads = []
+        for _ in range(50):
+            directory_name = str(uuid.uuid4())[:8]  # Tạo một tên thư mục ngẫu nhiên từ uuid và chỉ lấy 8 ký tự đầu
+            thread = threading.Thread(target=create_empty_directory, args=(directory_name,))
+            threads.append(thread)
+            thread.start()
+        for thread in threads:
+            thread.join()
 
-        # Tạo lệnh để tạo issue
-        command = f'gh issue create --title "{random_title}" --body "{random_body}"'
-
-        # Thực thi lệnh
-        os.system(command)
-
-        # Tạm dừng chương trình trong một khoảng thời gian ngắn (ví dụ: từ 1 đến 3 giây)
-        time.sleep(random.uniform(0, 1))  # Sử dụng uniform để có thời gian chờ ngẫu nhiên
-
-# Tạo danh sách các tiêu đề và nội dung issue có thể sử dụng
-issue_titles = ['Bug fix', 'Feature request', 'Documentation update', 'Performance improvement']
-issue_bodies = [
-    'This is a bug fix for issue #123.',
-    'I propose adding a new feature to enhance functionality.',
-    'Update documentation to reflect recent changes.',
-    'Optimize code for better performance.'
-]
-
-# Số lượng luồng bạn muốn chạy
-num_threads = 5
-
-# Tạo và khởi động các luồng
-threads = []
-for _ in range(num_threads):
-    thread = threading.Thread(target=create_issue)
-    thread.start()
-    threads.append(thread)
-
-# Chờ tất cả các luồng kết thúc
-for thread in threads:
-    thread.join()
+if __name__ == "__main__":
+    create_directories()
