@@ -24,9 +24,11 @@ try:
                 count += 1
                 if count >= 5000000:
                     raise StopIteration  
+
+            # Bốc ngẫu nhiên một ngày mới
             random_date = datetime.date(random.randint(start_date.year, end_date.year), 
                                         random.randint(1, 12), 
-                                        random.randint(1, 28))  # Bốc ngẫu nhiên một ngày mới
+                                        random.randint(1, 28))
 
         time.sleep(1)  # Chạy lại sau 1 giây nếu có lỗi
 except StopIteration:
