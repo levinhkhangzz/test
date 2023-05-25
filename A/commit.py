@@ -10,7 +10,9 @@ try:
         start_date = datetime.date(2023, 1, 1)  # Ngày bắt đầu: 1/1/2022
         end_date = datetime.date(2024, 2, 17)    # Ngày kết thúc: 16/2/2024
 
-        res_date = start_date
+        # Tạo ngày ngẫu nhiên trong khoảng từ start_date đến end_date
+        random_days = random.randint(0, (end_date - start_date).days)
+        res_date = start_date + datetime.timedelta(days=random_days)
 
         while res_date <= end_date:
             for i in range(random.randrange(1, 6111111111)):
