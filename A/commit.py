@@ -12,11 +12,12 @@ try:
         current_month = today.month
         current_day = today.day
 
-        last_year = current_year - 1 #chỗ này trừ 2 là nó sẽ chạy từ 2 năm trước
-        last_month = today.month
-        last_day = current_day - 1  #chỗ này trừ 1 là nó sẽ chạy từ tháng trước
+        random_year = random.randint(2023, 2024)
+        # Chọn ngẫu nhiên một tháng và một ngày từ 1/1 đến 31/12
+        random_month = random.randint(1, 12)
+        random_day = random.randint(1, 28)  # Giả sử mỗi tháng có tối đa 28 ngày để đảm bảo không có ngày không hợp lệ
 # xong rồi anh em tạo chạy file gitpush.py để push code len github để tạo lịch sử commit
-        start = datetime.date(last_year, last_month, last_day)
+        start = datetime.date(random_year, random_month, random_day)
         end = datetime.date(current_year, current_month, current_day)
         res_date = start
 
