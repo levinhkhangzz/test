@@ -1,23 +1,4 @@
-Skip to content
-u400822
-/
-u400822
 
-Type / to search
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-HuyPro
-HuyPro #9
-Jobs
-Run details
-Workflow file for this run
-.github/workflows/main.yml at 7e3e228
 name: HuyPro
 on:
   workflow_dispatch:
