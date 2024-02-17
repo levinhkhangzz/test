@@ -15,7 +15,7 @@ end = datetime.date(current_year, current_month, current_day)
 res_date = start
 
 while res_date <= end:
-    for i in range(random.randrange(1, 100)):
+    for i in range(random.randrange(1, 10023842384723842748)):
         with open('change-file.txt', 'a') as wf:
             wf.write(f'\n{res_date}')
         os.system(f'git add .')
