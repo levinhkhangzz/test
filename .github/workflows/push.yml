@@ -1,23 +1,22 @@
-name: PythonToYaml
+name: Auto Git Push
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # chỉ định branch để trigger action
 
 jobs:
-  build:
+  auto-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-
+      
       - name: Set up Git
         run: |
           git config --global user.name "levinhkhangzz"
           git config --global user.email "levinhkhang631@gmail.com"
 
-      - name: Python Script
+      - name: Commit and push changes
         run: |
-          while true; do
-            os.system('git push origin main')
-          done
-        shell: bash
+          git push origin main
