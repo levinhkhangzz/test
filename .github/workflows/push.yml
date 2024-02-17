@@ -19,6 +19,6 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GH_TOKEN: ${{ secrets.PAT }}  # Sử dụng token từ GitHub Secrets
+          GH_TOKEN: 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
         run: |
           git push origin main
