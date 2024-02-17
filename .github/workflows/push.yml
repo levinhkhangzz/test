@@ -18,5 +18,7 @@ jobs:
           git config --global user.email "levinhkhang631@gmail.com"
 
       - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}  # Sử dụng token từ GitHub Secrets
         run: |
           git push origin main
