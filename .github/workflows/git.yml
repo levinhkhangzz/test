@@ -19,6 +19,6 @@ jobs:
               echo $i > Huy.txt
               git add .
               git commit -m "By Aedotris"
-              git push
+              git push origin main
             done
           done
