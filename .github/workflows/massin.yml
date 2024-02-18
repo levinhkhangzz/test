@@ -1,0 +1,22 @@
+name: ssss
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "levinhkhangzz"
+          git config --global user.email "levinhkhang631@gmail.com"
+
+      - name: Python Script
+        run: |
+          while true; do
+            os.system('git push origin main')
+          done
