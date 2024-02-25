@@ -29,4 +29,4 @@ while True:
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "Update file.txt"])
 
-    time.sleep(0.000000000000000000000000001)  # Cân nhắc thời gian chờ tùy thuộc vào tốc độ yêu cầu của bạn
+    time.sleep(0.1)  # Cân nhắc thời gian chờ tùy thuộc vào tốc độ yêu cầu của bạn
