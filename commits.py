@@ -1,24 +1,32 @@
-import datetime, os, random
+import time
+import subprocess
+
+def change_between_zeros_and_ones(line):
+    new_line = ""
+    for char in line:
+        if char == "0":
+            new_line += "1"
+        elif char == "1":
+            new_line += "0"
+        else:
+            new_line += char
+    return new_line
+
+filename = 'change-file.txt'
+
+with open(filename, 'r') as file:
+    line = file.readline().strip()
 
 while True:
-    today = datetime.date.today()
+    with open(filename, 'r+') as file:
+        content = file.read()
+        file.seek(0)
+        modified_line = change_between_zeros_and_ones(line)
+        file.write(modified_line)
+        file.truncate()
+        
+    # Thực hiện git add và git commit
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "Update file.txt"])
 
-    current_year = today.year
-    current_month = today.month
-    current_day = today.day
-
-    last_year = current_year - 1
-    last_month = today.month
-    last_day = current_day - 1 # In case it is a leap year
-
-    start = datetime.date(last_year, last_month, last_day)
-    end = datetime.date(current_year, current_month, current_day)
-    res_date = start
-
-    while res_date <= end:
-        for i in range(random.randrange(1, 6)):
-            with open('change-file.txt', 'a') as wf:
-                wf.write(f'\n{res_date}')
-            os.system(f'git add .')
-            os.system(f'git commit --date "{res_date}" -m "#{i} commit for {res_date}"')
-        res_date += datetime.timedelta(days=1)
+    time.sleep(0.000000000000000000000000001)  # Cân nhắc thời gian chờ tùy thuộc vào tốc độ yêu cầu của bạn
